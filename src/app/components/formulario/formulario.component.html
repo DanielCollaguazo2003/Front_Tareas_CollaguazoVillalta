@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Tareas o notas</h1>
+  <form [formGroup]="form" class="formulario">
+    <h2>Nueva tarea o nota</h2>
+    <div class="container-cabeceraform">
+      <input type="text" formControlName="nombre" placeholder="NOMBRE" class="nombre-input input">
+
+      <label for="fecha" class="label">Fecha</label>
+      <input type="date" formControlName="fecha" class="fecha">
+    </div>
+    <div class="contenido-container">
+      <label for="contenido" class="contenido-label">Contenido</label>
+      <textarea formControlName="contenido" rows="4" required class="area-contenido input-contenido"></textarea>
+    </div>
+
+
+    <div class="etiquetas">
+      <label for="etiqueta" class="label-etiqueta">Etiquetas:</label>
+      <div class="etiquetas-seeccionadas">
+        <span *ngFor="let etiqueta of listaEtiquetas" class="span-etiqueta">
+          #{{etiqueta.nombre}} | <button (click)="eliminarEtiqueta(etiqueta)">X</button>
+        </span>
+      </div>
+
+      <div class="etiquetas-container" id="etiquetasContainer">
+      </div>
+      <button id="btnAgregarEtiqueta" (click)="openModal()">+ Agregar Etiqueta</button>
+      <div class="" *ngIf="modalSwitch == true">
+        <app-model-etiquetas></app-model-etiquetas>
+      </div>
+    </div>
+
+
+    <div class="buttons">
+      <button (click)="agregartarea()" class="boton">Crear</button>
+      <button (click)="actualizarTarea()" class="boton">Actualizar</button>
+    </div>
+  </form>
+  <button class="scroll-arrow" (click)="scrollToList()">Lista ↓</button>
+</div>

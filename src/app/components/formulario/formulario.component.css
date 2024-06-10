@@ -1,0 +1,177 @@
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.formulario {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-cabeceraform {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nombre-input,
+.fecha,
+.area-contenido,
+.input-etiquetas {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.nombre-input:focus,
+.fecha:focus,
+.area-contenido:focus,
+.input-etiquetas:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.contenido-container {
+  margin-top: 20px;
+}
+
+.contenido-label {
+  font-weight: bold;
+}
+
+.area-contenido {
+  resize: vertical;
+}
+
+.etiquetas {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.etiquetas-seeccionadas {
+  display: block;
+  position: relative;
+  min-height: 33px;
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 5px;
+  align-items: center;
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.span-etiqueta {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px;
+  max-width: 250px;
+  overflow: hidden;
+  vertical-align: middle;
+  font-size: 17px;
+  background-color: aquamarine;
+  margin: 4px;
+  border-radius: 3px;
+}
+
+.span-etiqueta button {
+  margin: 5px;
+  background: none;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+#btnAgregarEtiqueta {
+  padding: 10px 20px;
+  background-color: #3c74b0;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.buttons{
+  text-align: center;
+  margin-top: 15px;
+}
+
+.boton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  width: 105px;
+}
+
+.boton:hover {
+  background-color: #0056b3;
+}
+#btnAgregarEtiqueta:hover {
+  background-color: #00b351;
+}
+
+.scroll-arrow {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Version Móvil */
+@media (max-width: 640px) {
+  .container h1 {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .container-cabeceraform {
+    flex-direction: column;
+    align-items: start;
+    margin-top: 5px;
+  }
+
+  .container-cabeceraform input:nth-child(1){
+    height: 30px;
+  }
+
+  .contenido-container {
+    margin-top: 0;
+  }
+
+  .etiquetas {
+    width: 100%;
+  }
+
+  .span-etiqueta {
+    max-width: 150px;
+    font-size: 12px;
+    height: 18px;
+  }
+
+  .scroll-arrow{
+    display: none;
+  }
+}

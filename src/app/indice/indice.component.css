@@ -1,0 +1,12 @@
+/* Etiqueta CSS para hacer que el componente del formulario ocupe toda la vista principal */
+.container-form{
+   min-height: 100vh;
+}
+@media(max-width: 640px) {
+  .container-list {
+    display: none;
+  }
+  .container-form{
+    min-height: none;
+  }
+}

@@ -1,0 +1,39 @@
+<div class="container tittle">
+  <h1>Lista de tareas o notas</h1>
+</div>
+<div class="container">
+  <ul>
+</ul>
+<div class="tabla-tareas">
+  <table>
+    <thead>
+      <tr>
+        <th class="col1">Nombre</th>
+        <th class="col2">Fecha</th>
+        <th class="col3">Etiquetas</th>
+        <th class="col4">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tarea of listaTareas">
+        <td>{{ tarea.nombre }}</td>
+        <td>{{ tarea.fecha }}</td>
+        <td *ngIf="tarea.etiquetas?.length; else sinEtiquetas">
+          <li *ngFor="let etiqueta of tarea.etiquetas">
+            #{{ etiqueta.nombre }}
+          </li>
+        </td>
+        <td class="row4">
+          <button class="ver-button" (click)="verTarea(tarea.uid)">Ver/Actuaizar</button>
+          <button class="eliminar-button" (click)="eliminarTarea(tarea)">Eliminar</button>
+        </td>
+        <ng-template #sinEtiquetas>
+          <div class="no-etiqueta">
+            <p class="no-etiqueta">Sin etiquetas</p>
+          </div>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

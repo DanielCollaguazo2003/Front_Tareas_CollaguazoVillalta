@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="container-etiquetas">
+    <div class="container-modal">
+      <h4>Añadir etiquetas</h4>
+      <button (click)="cerrarModal()">Cerrar</button>
+    </div>
+    <div class="form-container">
+      <form [formGroup]="form">
+        <input type="text" formControlName="nombre" placeholder="Nombre" class="input-etiquetas">
+        <button (click)="agregarEtiqueta()">Crear</button>
+      </form>
+    </div>
+    <div class="lista-etiquetas">
+      <h5>Etiquetas Existentes</h5>
+      <ul class="lista">
+        <button *ngFor="let etiqueta of listaEtiquetas"
+          (click)="seleccionarEtiqueta(etiqueta)">#{{etiqueta.nombre}}</button>
+      </ul>
+    </div>
+  </div>
+</div>
