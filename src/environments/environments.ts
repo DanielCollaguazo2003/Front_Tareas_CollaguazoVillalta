@@ -1,4 +1,4 @@
 export const environment = {
 
-  WS_PATH: 'https://172.31.8.191:44366/api'
+  WS_PATH: 'https://172.31.20.232:44366/api'
 }
