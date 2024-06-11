@@ -11,20 +11,16 @@ import { Subscription } from 'rxjs';
 })
 export class ListaTareasComponent implements OnInit, OnDestroy {
   /* Variables */
-    /* Las variables necesarias para la lsita seran una lista y el scroll */
+  /* Las variables necesarias para la lsita seran una lista y el scroll */
   listaTareas: Tarea[] = [];
   private scrollSubscription: Subscription | undefined;
 
   constructor(
     private elementRef: ElementRef,
-     private router: Router,
-     private renderer: Renderer2,
-     private _tareaService: TareaService){
-    //  this._tareaFirebaseService.getAll().subscribe(data => {
-    //    this.listaTareas = data;
-    //    this.listaTareas = this.listaTareas.filter(tarea => tarea.fecha);
-    //    this.listaTareas.sort((a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
-    //  });;
+    private router: Router,
+    private renderer: Renderer2,
+    private _tareaService: TareaService) {
+
   }
 
   getTareasLocal(): Tarea[] | null {
@@ -37,14 +33,14 @@ export class ListaTareasComponent implements OnInit, OnDestroy {
   }
 
   /* Ver la tarea */
-    /* Metodo para ver la tarea mediante una naveegacion del Router con su UID correspondiente */
-  verTarea(id: string){
+  /* Metodo para ver la tarea mediante una naveegacion del Router con su UID correspondiente */
+  verTarea(id: number) {
     this.router.navigate(['/formulario', id]);
 
   }
 
   /* Metodo para eliminar una tarea */
-  eliminarTarea(tarea: Tarea){
+  eliminarTarea(tarea: Tarea) {
     // this._tareaFirebaseService.delete(tarea);
   }
 
@@ -53,6 +49,13 @@ export class ListaTareasComponent implements OnInit, OnDestroy {
     this.scrollSubscription = this._tareaService.scrollEvent$.subscribe(() => {
       this.scrollIntoView();
     });
+    this._tareaService.getTareas().subscribe(data => {
+      console.log(data)
+      this.listaTareas = data;
+      console.log(this.listaTareas)
+      this.listaTareas = this.listaTareas.filter(tarea => tarea.time);
+      this.listaTareas.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+    });;
   }
 
   /* Metodo para destruir la suscripcion y sea mas eficiente el programa */

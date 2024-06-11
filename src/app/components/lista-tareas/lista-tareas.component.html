@@ -16,15 +16,15 @@
     </thead>
     <tbody>
       <tr *ngFor="let tarea of listaTareas">
-        <td>{{ tarea.nombre }}</td>
-        <td>{{ tarea.fecha }}</td>
-        <td *ngIf="tarea.etiquetas?.length; else sinEtiquetas">
-          <li *ngFor="let etiqueta of tarea.etiquetas">
+        <td>{{ tarea.name }}</td>
+        <td>{{ tarea.time }}</td>
+        <td *ngIf="tarea.tags?.length; else sinEtiquetas">
+          <li *ngFor="let etiqueta of tarea.tags">
             #{{ etiqueta.nombre }}
           </li>
         </td>
         <td class="row4">
-          <button class="ver-button" (click)="verTarea(tarea.uid)">Ver/Actuaizar</button>
+          <button class="ver-button" (click)="verTarea(tarea.id)">Ver/Actuaizar</button>
           <button class="eliminar-button" (click)="eliminarTarea(tarea)">Eliminar</button>
         </td>
         <ng-template #sinEtiquetas>

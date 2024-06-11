@@ -14,7 +14,6 @@ import { ListaTareasComponent } from '../lista-tareas/lista-tareas.component';
 })
 export class FormularioComponent implements OnInit {
 
-  /*Declaramos las variables necesarias para nustro componente las cuales son tres lisas, un booleano un imput y una tarea*/
   tarea?: Tarea;
   @Input() etiquetas?: string[];
   modalSwitch: boolean = false;
@@ -22,14 +21,12 @@ export class FormularioComponent implements OnInit {
   listaEtiquetasActu: Etiqueta[] = [];
   listaTareas: Tarea[] = [];
 
-  /*Declaramos los servicios que nos ayudaran para los metodos de la funcionalidad*/
   constructor(
     private router: Router,
     private _modalEtiquetaService: ModalEtiquetaService,
     private route: ActivatedRoute,
     private _tareaService: TareaService
   ) {
-    /*Obtenemos las etiquetas de nuestro servicio para poder trabajar con ellas*/
 
     this.listaEtiquetas = _modalEtiquetaService.getEtiquetas();
   }
@@ -39,17 +36,15 @@ export class FormularioComponent implements OnInit {
     this.route.params.subscribe(params => {
       const tareaId = params['id'];
     });
+
   }
 
-  /* Vamos a trabajar con formularios reactivos por lo que la forma de recoger datos y validar datos es mediante el formGroup, FormControl y Validator */
-    /* dentro de este mandamos parametros que no son ingresados por el usuario como el UID, la lista de etiquetas se maneja de otra manera asi que se
-    lemanda un metodo que ayuda a recoger las etiuetas para luego subirlas en forma de array */
   form = new FormGroup({
-    uid: new FormControl(1, []),
-    nombre: new FormControl('', [Validators.required]),
-    fecha: new FormControl<Date | null>(null, [Validators.required]),
+    id: new FormControl(0, []),
+    name: new FormControl('', [Validators.required]),
+    time: new FormControl<Date | null>(null, [Validators.required]),
     contenido: new FormControl('', [Validators.required]),
-    etiquetas: new FormControl(this._modalEtiquetaService.getEtiquetas(), []),
+    tags: new FormControl(this._modalEtiquetaService.getEtiquetas(), []),
   })
 
   /* Metodo para agragr una tarea */
@@ -61,13 +56,20 @@ export class FormularioComponent implements OnInit {
         return
       }
       this.listaEtiquetas = this._modalEtiquetaService.getEtiquetas();
-      // const tarea: Tarea = <Tarea>(this.form.getRawValue());
-      // tarea.etiquetas = this.listaEtiquetas;
-      // this._tareaFirebaseService.save(tarea);
-
+      const tarea: Tarea = <Tarea><unknown>(this.form.getRawValue());
+      console.log(tarea)
+      tarea.tags = this.listaEtiquetas;
+      tarea.id = 0;
+      console.log(tarea)
+      this._tareaService.saveTarea(tarea).subscribe(data => {
+        this.ngOnInit();
+      });
       this.form.reset();
 
       this._modalEtiquetaService.limpiarEtiquetasSeleccionadas();
+
+      window.location.reload();
+
     }else{
       alert('Esta en la actualizando una tarea')
     }
